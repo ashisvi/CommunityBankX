@@ -8,6 +8,7 @@ module.exports = {
       fontFamily: {
         'inter-regular': ['Inter_Regular', 'sans-serif'],
         'inter-semibold': ['Inter_SemiBold', 'sans-serif'],
+        'inter-medium': ['Inter_Medium', 'sans-serif'],
         'inter-bold': ['Inter_Bold', 'sans-serif'],
         'montserrat-regular': ['Montserrat_Regular', 'sans-serif'],
         'montserrat-semibold': ['Montserrat_SemiBold', 'sans-serif'],

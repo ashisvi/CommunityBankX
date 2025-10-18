@@ -15,7 +15,8 @@ export default function Layout() {
     Montserrat_Bold: require('@/assets/fonts/Montserrat-Bold.ttf'),
     Montserrat_ExtraBold: require('@/assets/fonts/Montserrat-ExtraBold.ttf'),
     Inter_Regular: require('@/assets/fonts/Inter-Regular.ttf'),
-    Inter_Semibold: require('@/assets/fonts/Inter-SemiBold.ttf'),
+    Inter_Medium: require('@/assets/fonts/Inter-Medium.ttf'),
+    Inter_SemiBold: require('@/assets/fonts/Inter-SemiBold.ttf'),
     Inter_Bold: require('@/assets/fonts/Inter-Bold.ttf'),
   });
 
