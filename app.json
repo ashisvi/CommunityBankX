@@ -3,31 +3,26 @@
     "name": "CommunityBankX",
     "slug": "CommunityBankX",
     "version": "1.0.0",
-    
-    
-      "scheme": "CommunityBankX",
-      "platforms": ["ios", "android"],
-      "web": {
-        "bundler": "metro",
-        "output": "static",
-        "favicon": "./assets/favicon.png"
-      },
-      "plugins": [
-      "expo-router"
-      
+    "scheme": "CommunityBankX",
+    "platforms": [
+      "ios",
+      "android"
     ],
-      "experiments": {
-        "typedRoutes": true
-        
-          ,"tsconfigPaths": true
-        
-      },
-    
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-router"
+    ],
+    "experiments": {
+      "typedRoutes": true,
+      "tsconfigPaths": true
+    },
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    
-     "userInterfaceStyle": "light",
-    
+    "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/icon.png",
       "resizeMode": "contain",
@@ -43,7 +38,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.ashisvi.CommunityBankX"
     }
   }
 }

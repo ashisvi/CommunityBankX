@@ -4,8 +4,8 @@ export const Container = ({
   children,
   className,
 }: {
-  children: React.ReactNode;
-  className: string;
+  children?: React.ReactNode;
+  className?: string;
 }) => {
   return <SafeAreaView className={styles.container + className}>{children}</SafeAreaView>;
 };
