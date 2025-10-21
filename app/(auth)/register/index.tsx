@@ -18,9 +18,9 @@ const Register = () => {
         {/* Inputs */}
         <Input placeholder="Email" />
 
-        <Input placeholder="Mobile number (optional)" />
+        <Input placeholder='Create password' isPassword />
 
-        <Button btnText="Get OTP" onPress={() => router.push("/(auth)/register/otp-screen")} />
+        <Button btnText="Register" onPress={() => router.push("/(auth)/register/details")} />
 
         <Link href={'/login'} className="mt-3 font-inter-semibold text-secondary">
           Already registered? Log In

@@ -4,7 +4,7 @@ import { useFonts } from 'expo-font';
 
 import { Stack } from 'expo-router';
 import { useEffect } from 'react';
-import { Text } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -27,10 +27,13 @@ export default function Layout() {
   }, [fontsLoaded]);
 
   return (
-    <Stack
-      screenOptions={{
-        headerShown: false,
-      }}
-    />
+    <SafeAreaView className='bg-primary flex-1'>
+      <Stack
+        screenOptions={{
+          statusBarStyle: 'light',
+          headerShown: false,
+        }}
+      />
+    </SafeAreaView>
   );
 }
