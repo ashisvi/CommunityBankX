@@ -1,15 +1,17 @@
 import { View, Text } from 'react-native';
 import React from 'react';
-import { Link, useRouter } from 'expo-router';
+import { Link } from 'expo-router';
 import { Container } from '@/components/Container';
 
 const index = () => {
-  const router = useRouter();
-
   return (
-    <Container className='flex-1 justify-center items-center'>
-      <Link href="/register" className='text-secondary text-xl m-3'>Register</Link>
-      <Link href="/login" className='text-secondary text-xl m-3'>Log In</Link>
+    <Container className="flex-1 items-center justify-center">
+      <Link href="/register" className="m-3 text-xl text-secondary">
+        Register
+      </Link>
+      <Link href="/login" className="m-3 text-xl text-secondary">
+        Log In
+      </Link>
     </Container>
   );
 };

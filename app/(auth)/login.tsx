@@ -2,13 +2,25 @@ import { View, Image, Text, TextInput, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { Container } from '@/components/Container';
 import Input from '@/components/Input';
-import { Link } from 'expo-router';
+import { Link, useRouter } from 'expo-router';
 import Button from '@/components/Button';
+import { useAuthStore } from '@/store/useAuthStore';
 
 const Login = () => {
+  const [email, setEmail] = React.useState<string>('');
+  const [password, setPassword] = React.useState<string>('');
+
+  const { user, isLoading, signIn } = useAuthStore();
+  const router = useRouter();
+
+  const login = async () => {
+    await signIn(email, password);
+    if (user) router.replace('/(app)');
+  };
+
   return (
     <Container className="bg-background">
-      <View className="items-center justify-center p-6 mt-6">
+      <View className="mt-6 items-center justify-center p-6">
         <Image source={require('@/assets/icon.png')} className="h-32 w-32" />
         <Text className="mt-4 font-montserrat-bold text-xl color-primary">CommunityBankX</Text>
 
@@ -17,12 +29,12 @@ const Login = () => {
         </Text>
 
         {/* Inputs */}
-        <Input placeholder="Email or mobile number" />
-        <Input placeholder="Password" isPassword />
+        <Input placeholder="Email or mobile number" value={email} onChangeText={setEmail} />
+        <Input placeholder="Password" isPassword value={password} onChangeText={setPassword} />
 
-        <Button btnText="Log In" />
+        <Button btnText="Log In" onPress={login} />
 
-        <Link href={'./register'} className="font-inter-semibold text-secondary mt-3">
+        <Link href={'./register'} className="mt-3 font-inter-semibold text-secondary">
           Don't have an account? Sign Up
         </Link>
       </View>
