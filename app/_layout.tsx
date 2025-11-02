@@ -1,16 +1,15 @@
 import '../global.css';
-import { Redirect, SplashScreen } from 'expo-router';
+import { Redirect, SplashScreen, Stack } from 'expo-router';
 import { useFonts } from 'expo-font';
 
-import { Stack } from 'expo-router';
 import { useEffect } from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { useAuthStore } from '@/store/useAuthStore';
+import { View } from 'react-native';
 
 SplashScreen.preventAutoHideAsync();
 
 export default function Layout() {
-  const { fetchUser, user, isLoading, signOut } = useAuthStore();
+  const { fetchProfile, user, loading, signOut } = useAuthStore();
 
   const [fontsLoaded] = useFonts({
     Montserrat_Regular: require('@/assets/fonts/Montserrat-Regular.ttf'),
@@ -24,23 +23,23 @@ export default function Layout() {
   });
 
   useEffect(() => {
-    fetchUser();
-    if (fontsLoaded && isLoading) {
+    fetchProfile();
+    if (fontsLoaded && loading) {
       SplashScreen.hideAsync();
     }
-  }, [fontsLoaded]);
+  }, [fontsLoaded, fetchProfile, loading]);
 
   return (
-    <SafeAreaView className="flex-1 bg-primary">
+    <View className="h-full bg-primary">
       <Stack
         screenOptions={{
-          statusBarStyle: 'light',
+          statusBarStyle: 'dark',
           headerShown: false,
         }}>
         <Stack.Screen name="(auth)" options={{ gestureEnabled: false }} />
         <Stack.Screen name="(app)" options={{ gestureEnabled: false }} />
       </Stack>
-      {user ? <Redirect href="/(app)/" /> : <Redirect href="/(auth)/login" />}
-    </SafeAreaView>
+      {user ? <Redirect href="/(tabs)" /> : <Redirect href="/(auth)/login" />}
+    </View>
   );
 }

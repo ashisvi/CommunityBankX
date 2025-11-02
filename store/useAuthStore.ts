@@ -1,47 +1,95 @@
 import { create } from 'zustand';
 import { supabase } from '@/utils/supabase';
+import { uploadImage } from '@/utils/uploadImage';
 
-type User = {
+export interface UserProfile {
   id: string;
-  email?: string | undefined;
-};
+  email: string | null;
+  fullName?: string;
+  address?: string;
+  phoneNumber?: string;
+  profileUrl?: string;
+}
 
-type AuthState = {
-  user: User | null;
-  isLoading: boolean;
+interface AuthState {
+  user: UserProfile | null;
+  loading: boolean;
+  error: string | null;
+  signUp: (email: string, password: string) => Promise<void>;
   signIn: (email: string, password: string) => Promise<void>;
   signOut: () => Promise<void>;
-  fetchUser: () => Promise<void>;
-};
+  updateProfile: (fields: {
+    fullName?: string;
+    address?: string;
+    phoneNumber?: string;
+    photoUri?: string;
+  }) => Promise<void>;
+  fetchProfile: () => Promise<void>;
+}
 
-export const useAuthStore = create<AuthState>((set) => ({
+export const useAuthStore = create<AuthState>((set, get) => ({
   user: null,
-  isLoading: false,
+  loading: false,
+  error: null,
+
+  signUp: async (email, password) => {
+    set({ loading: true });
+    const { data, error } = await supabase.auth.signUp({ email, password });
+    if (error) set({ error: error.message });
+    else set({ user: { id: data.user?.id!, email: data.user?.email || null } });
+    set({ loading: false });
+  },
 
   signIn: async (email, password) => {
-    set({ isLoading: true });
+    set({ loading: true });
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
-    if (error) {
-      console.error(error);
-      set({ isLoading: false });
-      return;
-    }
-    set({ user: data.user, isLoading: false });
+    if (error) set({ error: error.message });
+    else set({ user: { id: data.user?.id!, email: data.user?.email || null } });
+    set({ loading: false });
   },
 
   signOut: async () => {
-    set({ isLoading: true });
     await supabase.auth.signOut();
-    set({ user: null, isLoading: false });
+    set({ user: null });
   },
 
-  fetchUser: async () => {
-    set({ isLoading: true });
-    const { data } = await supabase.auth.getUser();
-    if (data?.user) set({ user: data.user, isLoading: false });
-    else set({ user: null, isLoading: false });
+  fetchProfile: async () => {
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    if (!user) return;
+
+    const { data: profile } = await supabase
+      .from('profiles')
+      .select('*')
+      .eq('id', user.id)
+      .single();
+
+    console.log('useAuthStore.ts ~ user ~', user);
+    console.log('useAuthStore.ts ~ profile ~', profile);
+
+    if (profile) set({ user: { ...user, ...profile } });
+  },
+
+  updateProfile: async ({ address, phoneNumber, photoUri }) => {
+    const current = get().user;
+    if (!current) return;
+
+    let profileUrl = current.profileUrl;
+    // if (photoUri) profileUrl = await uploadImage(current.id, photoUri);
+
+    const { error } = await supabase.from('profiles').upsert({
+      id: current.id,
+      address,
+      phoneNumber,
+      photoUri,
+    });
+
+    if (error) throw error;
+
+    set({ user: { ...current, address, phoneNumber, profileUrl } });
   },
 }));

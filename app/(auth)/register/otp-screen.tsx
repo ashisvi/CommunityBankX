@@ -1,6 +1,5 @@
 import React, { useRef, useState } from 'react';
 import { View, Text, TextInput, Image } from 'react-native';
-import { Container } from '@/components/Container';
 import Button from '@/components/Button';
 
 const INPUT_COUNT = 6;
@@ -69,8 +68,8 @@ const OTPScreen = () => {
   const combinedCode = code.join('');
 
   return (
-    <Container className="bg-background">
-      <View className="flex-1 justify-center p-6 -mt-28">
+    <View className="bg-background">
+      <View className="-mt-28 flex-1 justify-center p-6">
         <View className="mb-12 items-center">
           <Image source={require('@/assets/icon.png')} className="h-32 w-32" />
         </View>
@@ -126,7 +125,7 @@ const OTPScreen = () => {
           </Text>
         </View>
       </View>
-    </Container>
+    </View>
   );
 };
 
