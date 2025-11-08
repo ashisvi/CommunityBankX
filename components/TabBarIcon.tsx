@@ -11,11 +11,11 @@ const TabBarIcon: React.FC<{
 }> = ({ name, label, color, focused, size }) => (
   <View className="">
     <View
-      className={`h-[38px] w-[70px] items-center justify-center rounded-full px-3 py-2 ${focused && 'bg-primary/15'}`}>
+      className={`h-[38px] w-[70px] items-center justify-center rounded-full px-3 py-2 ${focused && 'bg-secondary/15'}`}>
       <Ionicons name={name} size={size} color={color} />
     </View>
     <Text
-      className={`text-center font-inter-medium text-sm ${focused ? 'text-primary' : 'text-neutral'}`}>
+      className={`text-center font-inter-semibold text-[0.95rem] ${focused ? 'text-secondary' : 'text-neutral'}`}>
       {label}
     </Text>
   </View>

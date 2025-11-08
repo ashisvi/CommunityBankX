@@ -55,7 +55,7 @@ const Profile = () => {
       <View className="flex-1 bg-background px-5">
         {/* ToDo: Make status bar content visible */}
 
-        <View className="z-10 -mt-3 items-center justify-center">
+        <View className="z-10 -mt-6 items-center justify-center">
           <Image src={user?.profileUrl} height={130} width={130} className="my-5 rounded-xl" />
 
           <View>
@@ -77,7 +77,7 @@ const Profile = () => {
 
           {/* Settings */}
           <View className="mb-5 mt-2 w-full gap-4">
-            <Text className="font-inter-bold text-xl text-primary">Settings</Text>
+            <Text className="mb-2 font-inter-bold text-xl text-secondary">Settings</Text>
 
             <TouchableOpacity className="flex-row gap-3">
               <Ionicons name="notifications" size={24} color={colors.neutral} />

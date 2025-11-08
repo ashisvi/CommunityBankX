@@ -4,7 +4,7 @@ import React from 'react';
 const sizeClasses = {
   small: 'px-5 py-1',
   medium: 'px-4 py-2 border-2',
-  large: 'px-6 py-3 border-2',
+  large: 'px-6 py-3 border-2 w-full',
 };
 
 const textSizeClasses = {
@@ -22,7 +22,7 @@ const Button: React.FC<{
   return (
     <TouchableOpacity
       onPress={onPress}
-      className={`w-full items-center justify-center rounded-full border ${sizeClasses[size]} ${btnType === 'secondary' ? 'border-secondary/50 bg-transparent' : 'bg-primary'}`}>
+      className={`items-center justify-center rounded-full border border-secondary ${sizeClasses[size]} ${btnType === 'secondary' ? 'border-secondary/50 bg-transparent' : 'bg-secondary'}`}>
       <Text
         className={`font-montserrat-semibold text-background ${textSizeClasses[size]} ${btnType === 'secondary' ? 'text-secondary' : ''}`}>
         {btnText}

@@ -12,19 +12,17 @@ const TabsLayout = () => {
         screenOptions={{
           headerStatusBarHeight: 25,
           headerStyle: {
-            height: 80,
-            paddingVertical: 10,
-            paddingHorizontal: 20,
+            height: 90,
             backgroundColor: colors.background,
           },
-          tabBarActiveTintColor: colors.primary,
+          tabBarActiveTintColor: colors.secondary,
           tabBarInactiveTintColor: colors.neutral,
           tabBarShowLabel: false,
           headerTintColor: colors.primary,
           tabBarStyle: {
             backgroundColor: colors.background,
             borderTopWidth: 0,
-            paddingTop: 20,
+            paddingTop: 22,
             height: 70,
           },
         }}>
